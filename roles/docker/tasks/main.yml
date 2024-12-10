@@ -1,0 +1,50 @@
+---
+- name: check if docker is installed
+  command: docker --version
+  register: docker_check
+  ignore_errors: yes
+
+# Check if docker-compose is installed
+
+- name: check if docker-compose is installed
+  command: docker-compose --version
+  register: compose_check
+  ignore_errors: yes
+
+# Install Docker Engine if not installed    
+
+- name: Install Docker Engine 
+  apt: 
+    name: docker.io
+    state: present
+    update_cache: yes
+  when: docker_check.failed
+
+# Install Docker compose if not installed
+
+- name: Install Docker Compose
+  apt:
+    name: docker-compose
+    state: present 
+    update_cache: yes
+  when: compose_check.failed
+
+- name: Start Docker Service
+  service: 
+    name: docker 
+    state: started
+    enabled: true
+
+- name: Clone a github repository 
+  git:
+    repo: https://github.com/tsahaca/my-docker-app.git
+    dest: /home/ubuntu/docker-compose-app
+    version: main
+    clone: yes
+
+      
+- name: Run docker-compose to start the services
+  command: docker-compose up -d
+  args:
+    chdir: /home/ubuntu/docker-compose-app
+      
