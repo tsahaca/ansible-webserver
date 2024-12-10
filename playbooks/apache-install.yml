@@ -20,7 +20,7 @@
 
   - name: Remove existing index.html
     file:
-      path: /var/wwww/html/index.html
+      path: /var/www/html/index.html
       state: absent
 
   - name: Create a new empty index.html file
@@ -35,4 +35,3 @@
     lineinfile: 
       path: /var/www/html/index.html
       line: Hello Ansible Worls!    
-
