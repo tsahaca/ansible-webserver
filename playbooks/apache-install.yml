@@ -34,4 +34,4 @@
   - name: Add content to index.html file
     lineinfile: 
       path: /var/www/html/index.html
-      line: Hello Web Hook Automated Ansible World!    
+      line: Hello WebHook Automated Ansible World!    
