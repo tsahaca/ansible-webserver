@@ -20,15 +20,9 @@ pipeline {
         }
       }
     }
-
-     stage('Second Stage') {
+    stage('Checkout Ansible Webserver Code') {
       steps {
-        echo "Second stage"
-      }
-    }
-    stage('Third Stage') {
-      steps {
-        echo "Third stage"
+        git branch: 'main', credentialsId: 'git-repo-creds', url: 'git@github.com:tsahaca/ansible-webserver.git'
       }
     }
   }
