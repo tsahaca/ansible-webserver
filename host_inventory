@@ -1,0 +1,6 @@
+webservers:
+  hosts:
+    web01:
+      ansible_host: 18.117.94.71
+  vars:
+    ansible_ssh_private_key_file: /home/ubuntu/.ssh/vm-instance-key.pem
