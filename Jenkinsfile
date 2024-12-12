@@ -61,13 +61,13 @@ pipeline {
 
     stage('Test website'){
       steps{
-        sh 'export ANSIBLE_ROLES_PATH=/opt/jenkins/workspaces/ansible-pipeline/roles && ansible-playbook -u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/website-test.yml'
+        sh 'export ANSIBLE_ROLES_PATH=/opt/jenkins/workspace/ansible-pipeline/roles && ansible-playbook -u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/website-test.yml'
       }
     }
 
     stage('Deploy Docker Application'){
       steps{
-        sh 'export ANSIBLE_ROLES_PATH=/opt/jenkins/workspaces/ansible-pipeline/roles && ansible-playbook -u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/docker-install.yml'
+        sh 'export ANSIBLE_ROLES_PATH=/opt/jenkins/workspace/ansible-pipeline/roles && ansible-playbook -u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/docker-install.yml'
       }
     }
 
