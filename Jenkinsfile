@@ -54,20 +54,20 @@ pipeline {
 
     stage('Install Apache & Update Website'){
       steps{
-        sh 'export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook - u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/apache-install.yml'
-        sh 'export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook - u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/website-update.yml'
+        sh 'export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook -u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/apache-install.yml'
+        sh 'export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook -u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/website-update.yml'
       }
     }
 
     stage('Test website'){
       steps{
-        sh 'export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook - u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/website-test.yml'
+        sh 'export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook -u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/website-test.yml'
       }
     }
 
     stage('Deploy Docker Application'){
       steps{
-        sh 'export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook - u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/docker-install.yml'
+        sh 'export ANSIBLE_HOST_KEY_CHECKING=False && ansible-playbook -u $USER --private-key $KEY_FILE -i $WORKSPACE/host_inventory $WORKSPACE/playbooks/docker-install.yml'
       }
     }
 
